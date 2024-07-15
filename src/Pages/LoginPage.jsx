@@ -9,6 +9,7 @@ import { FaEye, FaEyeSlash, FaFacebookSquare } from "react-icons/fa";
 import loginImage from "../assets/login-image.jpg";
 import { useDispatch } from "react-redux";
 import { addUserData } from "../redux/features/userSlice/userSlice";
+import { addChatters } from "@/redux/features/chaterSlice/chaterSlice";
 
 const URL = import.meta.env.VITE_API_URL;
 
@@ -47,6 +48,9 @@ const LoginPage = () => {
       // console.log(loggedInUser, "userData");
 
       await dispatch(addUserData({ user: loggedInUser.data }));
+
+      await addChaterData();
+
       setIsLoading(false);
       navigate("/dashboard");
     } catch (error) {
@@ -66,6 +70,17 @@ const LoginPage = () => {
 
     checkIfUserAlreadyLoggedin();
   }, []);
+
+  async function addChaterData() {
+    try {
+      const data = await axios.get(`${URL}/auth/all-users`, {
+        withCredentials: true,
+      });
+      dispatch(addChatters(data.data));
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="flex justify-evenly gap-10 px-10 max-md:flex-col-reverse">

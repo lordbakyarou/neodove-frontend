@@ -1,6 +1,6 @@
 import React from "react";
 
-const Chatter = () => {
+const Chatter = ({ chatterData }) => {
   return (
     <div className="flex gap-2 p-2 items-center">
       <div>
@@ -11,10 +11,9 @@ const Chatter = () => {
         />
       </div>
       <div className="flex flex-col ">
-        <p className="font-semibold w-36 truncate">Mayur Hanwate</p>
+        <p className="font-semibold w-36 truncate">{chatterData.name}</p>
         <p className="text-gray-500  w-32 cursor-pointer bg-white  hover:shadow-xl truncate text-sm transition-all duration-300">
-          Ok, see you laterasdfasdf Ok, see you laterasdfasdfOk, see you
-          laterasdfasdf
+          {chatterData.email}
         </p>
       </div>
       <div className="ml-auto text-gray-500 self-start text-sm">19:08</div>
