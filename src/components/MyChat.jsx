@@ -1,18 +1,15 @@
+import { convertToAmPm } from "@/lib/utils";
 import React from "react";
 
 //React Icons
 import { IoCheckmarkOutline } from "react-icons/io5";
 
-const MyChat = () => {
+const MyChat = ({ chat }) => {
   return (
-    <div className="bg-green-300 flex flex-col rounded-xl w-1/2 p-2 self-end">
-      <div>
-        Heye asfaj as dfaks dfjkas dfka sdfk Heye asfaj as dfaks dfjkas dfka
-        sdfk Heye asfaj as dfaks dfjkas dfka sdfk Heye asfaj as dfaks dfjkas
-        dfka sdfk
-      </div>
-      <div className="flex justify-end text-white w-full items-center gap-2">
-        <p>18:16</p>
+    <div className="bg-[#d9fdd3] flex flex-col rounded-xl w-1/2 p-2 self-end">
+      <div>{chat.message}</div>
+      <div className="flex justify-end text-gray-500 w-full items-center gap-2">
+        <p>{convertToAmPm(chat.createdAt)}</p>
         <p>
           <IoCheckmarkOutline />
         </p>

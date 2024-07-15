@@ -5,11 +5,13 @@ const Chat = ({ userId, recipientId }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
 
-  const ws = new WebSocket(`ws://localhost:9000?userId=${userId}`);
-
   useEffect(() => {
+    const ws = new WebSocket(`ws://localhost:9000?userId=${userId}`);
+
+    console.log(ws, "inside useeffect");
     ws.onmessage = (event) => {
       const message = JSON.parse(event.data);
+      console.log(message);
       console.log(message, "this is message");
       setMessages((prevMessages) => [...prevMessages, message]);
     };

@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "../features/userSlice/userSlice";
 import chatterReducer from "../features/chaterSlice/chaterSlice";
+import currentChatReducer from "../features/currentChat/currentChat";
 import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";
 
@@ -13,6 +14,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   chatters: chatterReducer,
+  currentChat: currentChatReducer,
   // Add other reducers here if needed
 });
 

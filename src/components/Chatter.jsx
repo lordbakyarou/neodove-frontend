@@ -1,8 +1,15 @@
+import { openChat } from "@/redux/features/currentChat/currentChat";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const Chatter = ({ chatterData }) => {
+  const dispatch = useDispatch();
+
   return (
-    <div className="flex gap-2 p-2 items-center">
+    <div
+      className="flex gap-2 p-2 items-center"
+      onClick={() => dispatch(openChat(chatterData))}
+    >
       <div>
         <img
           className="w-10 h-10 rounded-full object-cover"

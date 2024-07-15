@@ -4,8 +4,11 @@ import React from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCall } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const chatData = useSelector((state) => state.currentChat);
+
   return (
     <div
       className="bg-white p-2 px-2 z-[80] fixed w-full
@@ -20,7 +23,7 @@ const Navbar = () => {
           />
         </div>
         <div className="flex flex-col ">
-          <p className="font-semibold w-36 truncate">Mayur Hanwate</p>
+          <p className="font-semibold w-36 truncate">{chatData.name}</p>
           <p className="text-gray-500 cursor-pointer text-sm">
             last seen 5 mins ago
           </p>

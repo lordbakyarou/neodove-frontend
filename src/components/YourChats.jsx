@@ -1,6 +1,7 @@
 import React from "react";
 import Chatter from "./Chatter";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { openChat } from "@/redux/features/currentChat/currentChat";
 
 const YourChats = () => {
   const data = useSelector((state) => state.chatters);
