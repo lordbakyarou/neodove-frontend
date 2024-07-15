@@ -83,7 +83,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="flex justify-evenly gap-10 px-10 max-md:flex-col-reverse">
+    <div className="flex justify-evenly gap-10 px-10 max-md:flex-col-reverse h">
       <div className="flex flex-col gap-2 justify-center max-md:items-center">
         <div>
           {/* Hello Text */}
