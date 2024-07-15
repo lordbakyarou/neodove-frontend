@@ -1,51 +1,37 @@
+import Chat from "@/components/Chat";
+import ChatWindow from "@/components/ChatWindow";
+import Sidebar from "@/components/Sidebar";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-const Dashboard = ({ userId, recipientId }) => {
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
+//Image
+import bgImage from "../assets/7600.png";
 
-  const userData = useSelector((state) => state.user);
-  const ws = new WebSocket(`ws://localhost:9000?userId=${userData._id}`);
+const Dashboard = () => {
+  const [selectedUser, setSelectedUser] = useState(null);
 
-  useEffect(() => {
-    ws.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      setMessages((prevMessages) => [...prevMessages, message]);
-    };
-
-    return () => {
-      ws.close();
-    };
-  }, [ws]);
-
-  const sendMessage = () => {
-    const message = {
-      type: "private_message",
-      recipientId,
-      text: input,
-    };
-    ws.send(JSON.stringify(message));
-    setInput("");
+  const startChat = (userId) => {
+    setSelectedUser(userId);
   };
 
+  const userData = useSelector((state) => state.user);
+
   return (
-    <div>
-      <div>
-        {messages.map((msg, index) => (
-          <div key={index}>
-            {msg.senderId === userId
-              ? `Me: ${msg.text}`
-              : `User ${msg.senderId}: ${msg.text}`}
-          </div>
-        ))}
+    <div
+      className={`h-full relative `}
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "repeat",
+        backgroundSize: "400px",
+        backgroundColor: "#8BABD8",
+      }}
+    >
+      <div className="flex">
+        <Sidebar />
+        <ChatWindow />
       </div>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <button onClick={sendMessage}>Send</button>
     </div>
   );
 };
